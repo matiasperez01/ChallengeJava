@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge Java</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="navbar">
+                <!-- Icono Home -->
+                <img src="img/home-svgrepo-com.svg" class="img" alt="Icono Home" onclick="mostrarHome()" title="Home">
+    
+                <!-- Icono Empleados -->
+                <img src="img/people-svgrepo-com.svg" class="img" alt="Icono listar Empleados" onclick="mostrarEmpleados()" title="Empleados">
+            </div>
+        </nav>
+
+
+        <div class="section-home" id="section-home">
+                <h1 class="section-home-text">Bienvenido!<br>
+                Challenge Java Developer</br>Matias Perez</strong>
+        </div>
+
+
+        <div class="section-empleados" id="section-empleados">
+                <div class="navbar-empleados">
+                    <div class="navbar-iconos">
+                        <!-- Icono Add  -->
+                        <img src="img/add-profile-svgrepo-com (1).svg" alt="Icono agregar Empleado" id="img-empleados" title="Agregar" onclick="crearEmpleado()">
+                        <!-- Icono Borrar -->
+                        <img src="img/trash-alt-svgrepo-com.svg" alt="Icono borrar Empleado" id="img-empleados" title="Borrar" onclick="borrarEmpleado()">
+                    </div>
+                        <div class="buscador">
+                            <span class="buscador-span">Buscador</span>
+                            <input type="text" placeholder="Nombre" class="buscador-input"  id="buscador-nombre">
+                            <input type="text" placeholder="Apellido" class="buscador-input"  id="buscador-apellido">
+                        </div>
+
+                            <table id="tabla-empleados">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">EMPLEADOS</th>
+                                    </tr>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabla-empleados-datos" >
+
+                                </tbody>
+                            </table>
+                </div>
+                <div class="form-empleados">
+                    
+                    <div class="form-empleados-navbar">
+                        <h3>&#128188 Datos Personales</h3>
+                        <span>
+                            <button class="buscador-boton" id="boton-editar" onclick="editarEmpleado()">Editar</button>
+                        </span>
+                    </div>
+                    <div class="form-empleados-datos">
+                        <div class="form-empleados-datos-campos">
+
+                            <input type="number" placeholder="ID" id="id" name="id" disabled hidden>
+                            </br>
+                            <label for="nombre">Nombre* </label>
+                            <input type="text" placeholder="Nombre (Min. 2 - Max.15)" id="nombre" name="nombre" disabled>
+                    
+                            <label for="apellido">Apellido* </label>
+                            <input type="text" placeholder="Apellido (Min. 2 - Max.15)" id="apellido" name="apellido" disabled>
+                        </div>
+
+                        <div class="form-empleados-datos-campos">
+                            <label for="celular">Celular </label>
+                            <input type="number" placeholder="Celular. Ej: 296540212" id="celular" name="celular" disabled min="0" max="9999999999">
+                        </div>
+
+                        <div class="form-empleados-datos-campos">
+                        <label for="genero">Genero* </label>
+                        Masculino <input type="radio" name="genero" id="masculino" name="genero" value="masculino" disabled>
+                        Femenino <input type="radio" name="genero" id="femenino" name="genero" value="femenino" disabled>
+                        </div>
+
+                        <div class="form-empleados-datos-campos">
+                        <label for="tutor">Tutor* </label>
+                        Si <input type="radio" name="tutor" id="si" name="tutor" value="si" disabled onclick="mostrarTutor()">
+                        No <input type="radio" name="tutor" id="no" name="tutor" value="no" disabled onclick="ocultarTutor()">
+                        <input type="text" placeholder="Quien? (ID)" id="tutor" disabled>
+                        </div>
+                    </div>    
+                <h4 class="form-empleados-titulo">&#128421; PC de Escritorio</h4>
+                    <div class="form-empleados-datos-campos">
+                        <label for="PCso">Instalacion de SO</label><input type="checkbox" id="PCso" disabled data-id_tarea="1" >
+                        <label for="PClimpieza">Limpieza Fisica</label><input type="checkbox" id="PClimpieza" disabled data-id_tarea="2" >
+                        <label for="PCvirus">Desinfeccion de virus</label><input type="checkbox" id="PCvirus" disabled data-id_tarea="3" >
+                        <label for="PCdiagnostico">Diagnosticar</label><input type="checkbox" id="PCdiagnostico" disabled data-id_tarea="4" >
+                        <label for="PCcambio">Cambio de partes</label><input type="checkbox" id="PCcambio" disabled data-id_tarea="5" >
+                    </div>
+
+                <h4 class="form-empleados-titulo">&#128187; Notebook</h4>
+                    <div class="form-empleados-datos-campos">
+                        <label for="NBso">Instalacion de SO</label><input type="checkbox" id="NBso" disabled data-id_tarea="6" >
+                        <label for="NBlimpieza">Limpieza Fisica</label><input type="checkbox" id="NBlimpieza" disabled data-id_tarea="7" >
+                        <label for="NBvirus">Desinfeccion de virus</label><input type="checkbox" id="NBvirus" disabled data-id_tarea="8" >
+                        <label for="NBdiagnostico">Diagnosticar</label><input type="checkbox" id="NBdiagnostico" disabled data-id_tarea="9" >
+                        <label for="NBcambio">Cambio de partes</label><input type="checkbox" id="NBcambio" disabled data-id_tarea="10" >
+                    </div>
+
+                <h4 class="form-empleados-titulo">&#128187; Celulares</h4>
+                    <div class="form-empleados-datos-campos">
+                        <label for="flasheo">Flasheo</label><input type="checkbox" id="flasheo" disabled data-id_tarea="11" >
+                        <label for="bateria">Cambio de bateria</label><input type="checkbox" id="bateria" disabled data-id_tarea="12" >
+                        <label for="pantalla">Cambio de pantalla</label><input type="checkbox" id="pantalla" disabled data-id_tarea="13" >
+                        <label for="templado">Cambio de vidrio templado</label><input type="checkbox" id="templado" disabled data-id_tarea="14" >
+                    </div>    
+
+                <h4 class="form-empleados-titulo">&#128587; Atencion al Cliente</h4>
+                    <div class="form-empleados-datos-campos">
+                        <label for="clientes">Recibir nuevos clientes</label><input type="checkbox" id="clientes" disabled data-id_tarea="15" >
+                        <label for="presupuestar">Presupuestar equipos</label><input type="checkbox" id="presupuestar" disabled data-id_tarea="16" >
+                        <label for="venta">Venta de equipos</label><input type="checkbox" id="venta" disabled data-id_tarea="17" >
+                        <label for="proveedores">Compra a proveedores</label><input type="checkbox" id="proveedores" disabled data-id_tarea="18" > 
+                    </div>    
+                    <div class="form-empleados-titulo">
+                        <button class="buscador-boton" id="boton-guardar-cambios" onclick="putEmpleado()">Guardar cambios</button>
+                        <button class="buscador-boton" id="boton-crear"  onclick="saveEmpleado()">Crear</button>
+                    </div>
+                    
+                </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <script src="js/script.js">
+    </script>
+</body>
+</html>
